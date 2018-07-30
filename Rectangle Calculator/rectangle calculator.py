@@ -1,11 +1,15 @@
 from guizero import *
+import turtle
 
-tbx_rect_length = []
 tbx_rect_width = []
+tbx_rect_height = []
 cmb_rect_color = []
 colors = ['   Red   ', '   Blue  ', ' Green  ', 'Orange']
 txt_rect_area = []
 txt_rect_perimeter = []
+
+wn = None
+bob = None
 
 
 def clear_outputs():
@@ -16,7 +20,7 @@ def clear_outputs():
 
 def clear_inputs():
     for i in range(4):
-        tbx_rect_length[i].value = ''
+        tbx_rect_height[i].value = ''
         tbx_rect_width[i].value = ''
 
 
@@ -25,14 +29,19 @@ def clear_all():
     clear_inputs()
 
 
-def plot():
-    pass
+def plot_square(i):
+    bob.color(cmb_rect_color[i].value.strip())
+    for j in range(2):
+        bob.forward(int(tbx_rect_width[i].value))
+        bob.left(90)
+        bob.forward(int(tbx_rect_height[i].value))
+        bob.left(90)
 
 
 def calc():
     clear_outputs()
     for i in range(4):
-        side1 = tbx_rect_length[i].value
+        side1 = tbx_rect_height[i].value
         side2 = tbx_rect_width[i].value
         if side1 != '' and side2 != '':
             try:
@@ -45,6 +54,7 @@ def calc():
 
                     txt_rect_perimeter[i].text_color = cmb_rect_color[i].value
                     txt_rect_perimeter[i].value = 2 * (float(length) + float(width))
+                    plot_square(i)
                 else:
                     error(title='Rectangle Calculator', text='Value must be positive')
             except ValueError:
@@ -52,15 +62,16 @@ def calc():
 
 
 def main():
-    global tbx_rect_length, tbx_rect_width
+    global tbx_rect_height, tbx_rect_width
     global txt_rect_area, txt_rect_perimeter
+    global wn, bob
 
     app = App(title="Rectangle Calculator",
               width=800, height=500, layout='grid')
     Text(app, grid=[0, 0])
 
     Text(app, grid=[1, 5], text='Rectangle 1')
-    tbx_rect_length.append(TextBox(app, grid=[2, 5]))
+    tbx_rect_height.append(TextBox(app, grid=[2, 5]))
     tbx_rect_width.append(TextBox(app, grid=[3, 5]))
     cmb_rect_color.append(Combo(app, grid=[4, 5],
                                 options=colors, selected=colors[0]))
@@ -68,7 +79,7 @@ def main():
     txt_rect_perimeter.append(Text(app, grid=[7, 5]))
 
     Text(app, grid=[1, 7], text='Rectangle 2')
-    tbx_rect_length.append(TextBox(app, grid=[2, 7]))
+    tbx_rect_height.append(TextBox(app, grid=[2, 7]))
     tbx_rect_width.append(TextBox(app, grid=[3, 7]))
     cmb_rect_color.append(Combo(app, grid=[4, 7],
                                 options=colors, selected=colors[1]))
@@ -76,7 +87,7 @@ def main():
     txt_rect_perimeter.append(Text(app, grid=[7, 7]))
 
     Text(app, grid=[1, 9], text='Rectangle 3')
-    tbx_rect_length.append(TextBox(app, grid=[2, 9]))
+    tbx_rect_height.append(TextBox(app, grid=[2, 9]))
     tbx_rect_width.append(TextBox(app, grid=[3, 9]))
     cmb_rect_color.append(Combo(app, grid=[4, 9],
                                 options=colors, selected=colors[2]))
@@ -84,7 +95,7 @@ def main():
     txt_rect_perimeter.append(Text(app, grid=[7, 9]))
 
     Text(app, grid=[1, 11], text='Rectangle 4')
-    tbx_rect_length.append(TextBox(app, grid=[2, 11]))
+    tbx_rect_height.append(TextBox(app, grid=[2, 11]))
     tbx_rect_width.append(TextBox(app, grid=[3, 11]))
     cmb_rect_color.append(Combo(app, grid=[4, 11],
                                 options=colors, selected=colors[3]))
@@ -117,6 +128,18 @@ def main():
     PushButton(app, grid=[4, 13], text='   QUIT   ', command=quit)
 
     Text(app, grid=[0, 14])
+
+    # Setup turtle window
+    wn = turtle.Screen()
+    wn.setup(width=500, height=500)
+
+    # Create a turtle
+    bob = turtle.Turtle()
+    bob.pu()
+    bob.goto(x=-(wn.window_width() / 2 - 20), y=(wn.window_height() / 2 - 40))
+    bob.write('Do not close this window, use QUIT button', font=('Arial', 16, 'normal'))
+    bob.goto(x=-(wn.window_width() / 2 - 20), y=-(wn.window_height() / 2 - 20))
+    bob.pd()
 
     app.display()
 
