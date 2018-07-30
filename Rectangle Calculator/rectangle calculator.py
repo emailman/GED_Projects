@@ -3,7 +3,7 @@ from guizero import *
 tbx_rect_length = []
 tbx_rect_width = []
 cmb_rect_color = []
-colors = ['   Red   ', '   Blue  ', ' Green  ','Orange']
+colors = ['   Red   ', '   Blue  ', ' Green  ', 'Orange']
 txt_rect_area = []
 txt_rect_perimeter = []
 
@@ -23,6 +23,10 @@ def clear_inputs():
 def clear_all():
     clear_outputs()
     clear_inputs()
+
+
+def plot():
+    pass
 
 
 def calc():
