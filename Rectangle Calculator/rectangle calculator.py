@@ -32,9 +32,9 @@ def clear_all():
 def plot_square(i):
     bob.color(cmb_rect_color[i].value.strip())
     for j in range(2):
-        bob.forward(int(tbx_rect_width[i].value))
+        bob.forward(int(tbx_rect_width[i].value) * 10)
         bob.left(90)
-        bob.forward(int(tbx_rect_height[i].value))
+        bob.forward(int(tbx_rect_height[i].value) * 10)
         bob.left(90)
 
 
@@ -48,7 +48,7 @@ def calc():
                 length = float(side1)
                 width = float(side2)
 
-                if length > 0 and width > 0:
+                if 0 < length <= 40 and 0 < width <= 40:
                     txt_rect_area[i].text_color = cmb_rect_color[i].value
                     txt_rect_area[i].value = float(length) * float(width)
 
@@ -56,7 +56,8 @@ def calc():
                     txt_rect_perimeter[i].value = 2 * (float(length) + float(width))
                     plot_square(i)
                 else:
-                    error(title='Rectangle Calculator', text='Value must be positive')
+                    error(title='Rectangle Calculator',
+                          text='Value must a positive number less or equal to 40')
             except ValueError:
                 error(title='Rectangle Calculator', text='Value must be a number')
 
@@ -103,10 +104,10 @@ def main():
     txt_rect_perimeter.append(Text(app, grid=[7, 11]))
 
     Text(app, grid=[2, 1], text='Length')
-    Text(app, grid=[2, 2], text='(0-50 inches)')
+    Text(app, grid=[2, 2], text='(0-40 inches)')
 
     Text(app, grid=[3, 1], text='Width')
-    Text(app, grid=[3, 2], text='(0-50 inches)')
+    Text(app, grid=[3, 2], text='(0-40 inches)')
 
     Text(app, grid=[4, 1], text='Color')
     Text(app, grid=[4, 2], text='(Choose One)')
