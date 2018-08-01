@@ -135,7 +135,7 @@ def main():
 
     Text(app, grid=[0, 12])
 
-    PushButton(app, grid=[2, 13], text='CALCULATE', command=calc)
+    PushButton(app, grid=[1, 13, 2, 1], text='  CALCULATE  ', command=calc)
     PushButton(app, grid=[3, 13], text='  CLEAR  ', command=clear_all)
     PushButton(app, grid=[4, 13], text='   QUIT   ', command=quit)
 
