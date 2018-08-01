@@ -27,7 +27,7 @@ def clear_inputs():
 def clear_all():
     clear_outputs()
     clear_inputs()
-    init_screen()
+    # init_screen()
 
 
 def init_screen():
