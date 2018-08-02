@@ -2,7 +2,6 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/../GED Projects/.idea/GED Projects.iml" filepath="$PROJECT_DIR$/../GED Projects/.idea/GED Projects.iml" />
       <module fileurl="file://$PROJECT_DIR$/.idea/GED_Projects.iml" filepath="$PROJECT_DIR$/.idea/GED_Projects.iml" />
     </modules>
   </component>

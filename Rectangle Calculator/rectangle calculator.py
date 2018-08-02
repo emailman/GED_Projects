@@ -68,7 +68,7 @@ def main():
     global wn, bob
 
     app = App(title="Rectangle Calculator",
-              width=800, height=500, layout='grid')
+              width=650, height=300, layout='grid')
     Text(app, grid=[0, 0])
 
     Text(app, grid=[1, 5], text='Rectangle 1')
