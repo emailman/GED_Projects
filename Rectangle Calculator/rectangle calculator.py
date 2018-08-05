@@ -27,10 +27,12 @@ def clear_inputs():
 def clear_all():
     clear_outputs()
     clear_inputs()
-    # init_screen()
+    init_canvas()
 
 
-def init_screen():
+def init_canvas():
+    bob.clear()
+    bob.pencolor('black')
     bob.pu()
     bob.goto(x=-(wn.window_width() / 2 - 20), y=(wn.window_height() / 2 - 40))
     bob.write('Do not close this window, use QUIT button', font=('Arial', 16, 'normal'))
@@ -39,7 +41,7 @@ def init_screen():
     bob.pd()
 
 
-def plot_square(i):
+def plot_rectangle(i):
     bob.color(cmb_rect_color[i].value.strip())
     for j in range(2):
         bob.forward(int(tbx_rect_width[i].value) * 10)
@@ -64,7 +66,7 @@ def calc():
 
                     txt_rect_perimeter[i].text_color = cmb_rect_color[i].value
                     txt_rect_perimeter[i].value = 2 * (float(length) + float(width))
-                    plot_square(i)
+                    plot_rectangle(i)
                 else:
                     error(title='Rectangle Calculator',
                           text='Value must be positive whole number less than 40')
@@ -78,7 +80,7 @@ def main():
     global wn, bob
 
     app = App(title="Rectangle Calculator",
-              width=800, height=500, layout='grid')
+              width=650, height=300, layout='grid')
     Text(app, grid=[0, 0])
 
     Text(app, grid=[1, 5], text='Rectangle 1')
@@ -143,12 +145,13 @@ def main():
 
     # Setup turtle window
     wn = turtle.Screen()
+    wn.title('Rectangle Display Window')
     wn.setup(width=500, height=500)
 
     # Create a turtle
     bob = turtle.Turtle()
 
-    init_screen()
+    init_canvas()
 
     app.display()
 
