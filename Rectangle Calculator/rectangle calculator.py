@@ -4,10 +4,11 @@ import turtle
 tbx_rect_width = []
 tbx_rect_height = []
 cmb_rect_color = []
-colors = ['   Red   ', '   Blue  ', ' Green  ', 'Orange']
 txt_rect_area = []
 txt_rect_perimeter = []
+colors = ['Red      ', 'Blue     ', 'Green  ', 'Orange']
 
+# Declare tkinter window and turtle
 wn = None
 bob = None
 
@@ -33,9 +34,10 @@ def clear_all():
 def init_canvas():
     bob.clear()
     bob.pencolor('black')
+    bob.color('black')
     bob.pu()
-    bob.goto(x=-(wn.window_width() / 2 - 20), y=(wn.window_height() / 2 - 40))
-    bob.write('Do not close this window, use QUIT button', font=('Arial', 16, 'normal'))
+    bob.goto(x=-(wn.window_width() / 2 - 20), y=(wn.window_height() / 2 - 60))
+    bob.write('Do not close this window,\nuse the QUIT button', font=('Arial', 16, 'normal'))
     bob.pu()
     bob.goto(x=-(wn.window_width() / 2 - 20), y=-(wn.window_height() / 2 - 20))
     bob.pd()
@@ -60,7 +62,7 @@ def calc():
                 length = float(side1)
                 width = float(side2)
 
-                if 0 < length <= 40 and 0 < width <= 40:
+                if 0 < length <= 30 and 0 < width <= 30:
                     txt_rect_area[i].text_color = cmb_rect_color[i].value
                     txt_rect_area[i].value = float(length) * float(width)
 
@@ -69,9 +71,9 @@ def calc():
                     plot_rectangle(i)
                 else:
                     error(title='Rectangle Calculator',
-                          text='Value must be positive whole number less than 40')
+                          text='Value must be a positive whole number less than or equal to 30')
             except ValueError:
-                error(title='Rectangle Calculator', text='Value must be a number')
+                error(title='Rectangle Calculator', text='Value must be a whole number')
 
 
 def main():
@@ -80,7 +82,7 @@ def main():
     global wn, bob
 
     app = App(title="Rectangle Calculator",
-              width=650, height=300, layout='grid')
+              width=650, height=280, layout='grid')
     Text(app, grid=[0, 0])
 
     Text(app, grid=[1, 5], text='Rectangle 1')
@@ -117,10 +119,10 @@ def main():
     txt_rect_perimeter.append(Text(app, grid=[7, 11]))
 
     Text(app, grid=[2, 1], text='Width')
-    Text(app, grid=[2, 2], text='(0-40 inches)')
+    Text(app, grid=[2, 2], text='(0-30 inches)')
 
     Text(app, grid=[3, 1], text='Height')
-    Text(app, grid=[3, 2], text='(0-40 inches)')
+    Text(app, grid=[3, 2], text='(0-30 inches)')
 
     Text(app, grid=[4, 1], text='Color')
     Text(app, grid=[4, 2], text='(Choose One)')
@@ -146,7 +148,7 @@ def main():
     # Setup turtle window
     wn = turtle.Screen()
     wn.title('Rectangle Display Window')
-    wn.setup(width=500, height=500)
+    wn.setup(width=450, height=400)
 
     # Create a turtle
     bob = turtle.Turtle()
