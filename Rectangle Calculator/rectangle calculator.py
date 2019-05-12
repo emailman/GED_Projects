@@ -40,6 +40,7 @@ def plot_square(i):
 
 def calc():
     clear_outputs()
+    bob.clear()
     for i in range(4):
         side1 = tbx_rect_height[i].value
         side2 = tbx_rect_width[i].value
